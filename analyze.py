@@ -104,8 +104,8 @@ def get_insert_value(image_path, image_info, request_timestamp, response_timesta
 	message = image_info.get("message")
 	estimated_data = image_info.get("estimated_data")
 	if estimated_data:
-		class_ = image_info.get("class")
-		confidence = image_info.get("confidence")
+		class_ = estimated_data.get("class")
+		confidence = estimated_data.get("confidence")
 	else:
 		class_ = None
 		confidence = None
