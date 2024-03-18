@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="{{url_for('analyze')}}" method="post" >
+	<div>
+		<label for="image_path">画像パス</label>
+		<input type="text" name="image_path" id="image_path" style="width:25%;">
+	</div>
+	<br>
+	<div>
+		<input type="submit" value="解析">
+	</div>
+</form>
+{% endblock %}
