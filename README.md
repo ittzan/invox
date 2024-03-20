@@ -20,4 +20,4 @@
 4. 処理結果を確認
 5. 事後作業
    - Dockerコンテナ停止・削除  
-     ```docker-compose down -v```
+     ```docker-compose down```
