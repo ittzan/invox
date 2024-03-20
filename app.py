@@ -31,12 +31,7 @@ def analyze():
 		httpretty.reset()
 
 	# MySQL接続
-	cnx = mysql.connector.connect(
-		host="localhost",
-		user="root",
-		database="invox"
-	)
-	cursor = cnx.cursor()
+	cnx, cursor = init_mysql()
 
 	# データ挿入
 	query = get_query()
@@ -78,6 +73,41 @@ def enable_mock(enabled, is_success):
 		httpretty.POST, 
 		"http://example.com/", 
 		body=json.dumps(dummy))
+
+def init_mysql():
+	# DB作成
+	cnx = mysql.connector.connect(
+		host="mysqldb",
+		user="root",
+		password="p@ssw0rd1"
+	)
+	cursor = cnx.cursor()
+	cursor.execute("CREATE DATABASE IF NOT EXISTS invox")
+	cursor.close()
+	cnx.close()
+
+	# テーブル作成
+	cnx = mysql.connector.connect(
+		host="mysqldb",
+		user="root",
+		database="invox",
+		password="p@ssw0rd1"
+	)
+	cursor = cnx.cursor()
+	cursor.execute(
+		"CREATE TABLE IF NOT EXISTS `invox`.`ai_analysis_log`("\
+			"`id` int(11) NOT NULL AUTO_INCREMENT, "\
+			"`image_path` varchar(255) DEFAULT NULL, "\
+			"`success` varchar(255) DEFAULT NULL, "\
+			"`message` varchar(255) DEFAULT NULL, "\
+			"`class` int(11) DEFAULT NULL, "\
+			"`confidence` decimal(5,4) DEFAULT NULL, "\
+			"`request_timestamp` int(10) unsigned DEFAULT NULL, "\
+			"`response_timestamp` int(10) unsigned DEFAULT NULL, "\
+			"PRIMARY KEY (`id`)) "\
+		"ENGINE=InnoDB DEFAULT CHARSET=utf8")
+	
+	return cnx, cursor
 
 def get_query():	
 	query = \
