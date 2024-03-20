@@ -14,7 +14,7 @@ def index():
 @app.route('/analyze', methods=['POST'])
 def analyze():
 	# APIのmock-upを有効化
-	enable_mock(enabled=True, is_success=True)
+	enable_mock(is_success=True)
 
 	# APIリクエスト
 	URL = "http://example.com/"
@@ -49,7 +49,7 @@ def analyze():
 
 	return render_template('result.html', title='結果ページ')
 
-def enable_mock(enabled, is_success):
+def enable_mock(is_success, enabled=True):
 	if not enabled:
 		# mock-upを有効化しない
 		return
