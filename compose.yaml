@@ -4,6 +4,8 @@ services:
       context: .
     depends_on:
       - mysqldb
+    environment:
+      - FLASK_DEBUG=1
     ports:
       - 8000:5000
     volumes:

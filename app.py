@@ -121,6 +121,3 @@ def get_insert_value(image_path, image_info, request_timestamp, response_timesta
 		"response_timestamp": response_timestamp, 
 	}
 	return insert_value
-
-if __name__ == '__main__':
-	app.run(debug=True, host='0.0.0.0')
