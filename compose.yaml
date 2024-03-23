@@ -1,7 +1,6 @@
 services:
   web:
-    build:
-      context: .
+    build: .
     depends_on:
       - mysqldb
     environment:
