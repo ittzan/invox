@@ -10,9 +10,7 @@
 
 ## 実行手順
 1. 事前準備
-   1. Dockerイメージ構築  
-      ```docker compose build```
-   2. Dockerコンテナ作成・起動  
+   - Dockerコンテナ作成・起動  
       ```docker compose up -d```
 2. ブラウザでアプリ表示
    - http://localhost:8000/
